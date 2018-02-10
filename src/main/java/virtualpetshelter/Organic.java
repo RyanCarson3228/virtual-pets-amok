@@ -5,6 +5,7 @@ public abstract class Organic extends Pet {
 	protected int hunger;
 	protected int thirst;
 	protected int waste;
+
 	public Organic() {
 		super();
 	}
@@ -17,11 +18,12 @@ public abstract class Organic extends Pet {
 		return hunger;
 	}
 
+	@Override
 	public void tick() {
 		thirst += 5;
 		hunger += 3;
-		boredom += 4; 
-		if(waste == 50) {
+		boredom += 4;
+		if (waste == 50) {
 			soil();
 		}
 	}
@@ -36,7 +38,7 @@ public abstract class Organic extends Pet {
 		hunger -= 6;
 		happiness += 3;
 		thirst += 4;
-		waste+=5;
+		waste += 5;
 	}
 
 	public int getWaste() {
@@ -48,7 +50,7 @@ public abstract class Organic extends Pet {
 		hunger += 5;
 		thirst += 3;
 		happiness += 2;
-	
+
 	}
 
 }

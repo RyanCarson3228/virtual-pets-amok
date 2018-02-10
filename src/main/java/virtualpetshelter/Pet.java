@@ -1,6 +1,6 @@
 package virtualpetshelter;
 
-public class Pet {
+public abstract class Pet {
 
 	protected String name;
 	protected String description;
@@ -30,6 +30,10 @@ public class Pet {
 
 	public int getHappy() {
 		return happiness;
+	}
+
+	public void tick() {
+		boredom += 4;
 	}
 
 }

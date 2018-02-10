@@ -16,14 +16,12 @@ public class OrgoDog extends Organic {
 		this.happiness = happiness;
 	}
 
-	
-
 	// start virtual-pet-amok methods
 
 	public void walk() {
 		boredom -= 10;
 		waste -= 10;
-		happiness+=5;
+		happiness += 5;
 		hunger += 3;
 		thirst += 5;
 	}

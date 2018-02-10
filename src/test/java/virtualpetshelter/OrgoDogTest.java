@@ -157,12 +157,12 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnHappinessAsTwentyFive() {
-		Pet underTest = new OrgoDog("","");
+		Organic underTest = new OrgoDog("", "");
 		int check = underTest.getHappy();
-		
+
 		assertEquals(25, check);
 	}
-	
+
 	@Test
 	public void walkShouldIncreaseHappiness() {
 		OrgoDog underTest = new OrgoDog("", "");
@@ -171,10 +171,10 @@ public class OrgoDogTest {
 		int check = underTest.getHappy();
 		assertEquals(30, check);
 	}
-	
+
 	@Test
 	public void shouldSoilAtHighWaste() {
-		Organic underTest = new OrgoDog("", "",25,25,25,50,25);
+		Organic underTest = new OrgoDog("", "", 25, 25, 25, 50, 25);
 		underTest.tick();
 		int check = underTest.getWaste();
 
