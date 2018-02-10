@@ -1,15 +1,10 @@
 package virtualpetshelter;
 
-public class Organic {
+public abstract class Organic extends Pet {
 
-	protected String name;
-	protected String description;
 	protected int hunger;
 	protected int thirst;
-	protected int boredom;
 	protected int waste;
-	protected int happiness;
-
 	public Organic() {
 		super();
 	}
@@ -18,20 +13,8 @@ public class Organic {
 		return thirst;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public int getHunger() {
 		return hunger;
-	}
-
-	public int getBoredom() {
-		return boredom;
-	}
-
-	public String getDescription() {
-		return description;
 	}
 
 	public void tick() {
@@ -56,12 +39,6 @@ public class Organic {
 		waste+=5;
 	}
 
-	public void play() {
-		boredom -= 8;
-		happiness += 10;
-		hunger += 4;
-	}
-
 	public int getWaste() {
 		return waste;
 	}
@@ -72,10 +49,6 @@ public class Organic {
 		thirst += 3;
 		happiness += 2;
 	
-	}
-
-	public int getHappy() {
-		return happiness;
 	}
 
 }

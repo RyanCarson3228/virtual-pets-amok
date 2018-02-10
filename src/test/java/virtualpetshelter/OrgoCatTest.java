@@ -10,7 +10,7 @@ public class OrgoCatTest {
 
 	@Test
 	public void shouldInstanitatePetWithNameAndDescription() {
-		Organic underTest = new OrgoCat("","");
+		Pet underTest = new OrgoCat("","");
 		
 		assertNotNull(underTest);
 	}

@@ -14,7 +14,7 @@ public class VirtualPetShelter {
 	}
 
 	// return a specific VirtualPet given its name
-	public Organic getPet(String name) {
+	public Pet getPet(String name) {
 		return pets.get(name);
 	}
 
@@ -53,7 +53,7 @@ public class VirtualPetShelter {
 	}
 
 	public void drinkAll() {
-		for (Organic virtualPet : pets()) {
+		for (Pet virtualPet : pets()) {
 			petDrink(virtualPet.getName());
 		}
 	}
@@ -65,14 +65,14 @@ public class VirtualPetShelter {
 	}
 
 	public void feedAll() {
-		for (Organic virtualPet : pets()) {
+		for (Pet virtualPet : pets()) {
 			feedPet(virtualPet.getName());
 		}
 	}
 
 	// plays with an individual pet in the shelter
 	public void petPlay(String name) {
-		Organic virtualPet = pets.get(name);
+		Pet virtualPet = pets.get(name);
 		virtualPet.play();
 	}
 
@@ -84,7 +84,7 @@ public class VirtualPetShelter {
 	}
 
 	public void allTick() {
-		for (Organic virtualPet : pets()) {
+		for (Pet virtualPet : pets()) {
 			tickPet(virtualPet.getName());
 		}
 	}
@@ -102,13 +102,13 @@ public class VirtualPetShelter {
 	}
 
 	public void nameAndDescription() {
-		for (Organic virtualPet : pets()) {
+		for (Pet virtualPet : pets()) {
 			System.out.println("[" + virtualPet.getName() + "] " + virtualPet.getDescription() + ".");
 		}
 	}
 
 	public boolean keyCheck(String name) {
-		for (Organic virtualPet : pets()) {
+		for (Pet virtualPet : pets()) {
 			if (virtualPet.getName().equalsIgnoreCase(name)) {
 				return true;
 			}

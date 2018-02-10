@@ -11,7 +11,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldInstantiatePetWithNameAndDescription() {
-		Organic underTest = new OrgoDog("", "");
+		Pet underTest = new OrgoDog("", "");
 
 		assertNotNull(underTest);
 	}
@@ -26,7 +26,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnNameAsHarry() {
-		Organic underTest = new OrgoDog("Harry", "");
+		Pet underTest = new OrgoDog("Harry", "");
 		String check = underTest.getName();
 
 		assertEquals("Harry", check);
@@ -50,7 +50,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnBoredomAsTwentyFive() {
-		Organic underTest = new OrgoDog("", "");
+		Pet underTest = new OrgoDog("", "");
 		int check = underTest.getBoredom();
 
 		assertEquals(25, check);
@@ -58,7 +58,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnDescriptionAsDescription() {
-		Organic underTest = new OrgoDog("", "Description");
+		Pet underTest = new OrgoDog("", "Description");
 		String check = underTest.getDescription();
 
 		assertEquals("Description", check);
@@ -112,7 +112,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void playShouldReduceBoredom() {
-		Organic underTest = new OrgoDog("", "");
+		Pet underTest = new OrgoDog("", "");
 		underTest.play();
 		int check = underTest.getBoredom();
 
@@ -157,7 +157,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnHappinessAsTwentyFive() {
-		Organic underTest = new OrgoDog("","");
+		Pet underTest = new OrgoDog("","");
 		int check = underTest.getHappy();
 		
 		assertEquals(25, check);

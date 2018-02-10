@@ -21,7 +21,7 @@ public class VirtualPetShelterTest {
 	public void nameShouldGetPet() {
 		OrgoDog expected = new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION);
 		underTest.addPet(expected);
-		Organic check = underTest.getPet(TEST_PET_ONE_NAME);
+		Pet check = underTest.getPet(TEST_PET_ONE_NAME);
 		assertEquals(expected, check);
 	}
 
@@ -89,7 +89,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.drinkAll();
 
-		for (Organic virtualPet : underTest.pets()) {
+		for (Pet virtualPet : underTest.pets()) {
 			int check = underTest.getPetThirst(virtualPet.getName());
 			assertEquals(15, check);
 		}
@@ -108,7 +108,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.feedAll();
-		for (Organic virtualPet : underTest.pets()) {
+		for (Pet virtualPet : underTest.pets()) {
 			int check = underTest.getPetHunger(virtualPet.getName());
 			assertEquals(19, check);
 		}
@@ -151,7 +151,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Organic virtualPet : underTest.pets()) {
+		for (Pet virtualPet : underTest.pets()) {
 			int check = underTest.getPetHunger(virtualPet.getName());
 			assertEquals(28, check);
 		}
@@ -162,7 +162,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Organic virtualPet : underTest.pets()) {
+		for (Pet virtualPet : underTest.pets()) {
 			int check = underTest.getPetThirst(virtualPet.getName());
 			assertEquals(30, check);
 		}
@@ -173,7 +173,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Organic virtualPet : underTest.pets()) {
+		for (Pet virtualPet : underTest.pets()) {
 			int check = underTest.getPetBoredom(virtualPet.getName());
 			assertEquals(29, check);
 		}
