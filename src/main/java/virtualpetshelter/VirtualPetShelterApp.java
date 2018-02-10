@@ -17,7 +17,7 @@ public class VirtualPetShelterApp {
 		String name = input.nextLine();
 		System.out.println("And let's give it a brief description for potential adopters:");
 		String description = input.nextLine();
-		shelter.addPet(new VirtualPet(name, description));
+		shelter.addPet(new OrgoDog(name, description));
 
 		System.out.println("If at any time you would like to quit, just type \"quit.\"");
 		String userInput = "";
@@ -61,7 +61,7 @@ public class VirtualPetShelterApp {
 				name = input.nextLine();
 				System.out.println("And let's give it a brief description for potential adopters:");
 				description = input.nextLine();
-				shelter.addPet(new VirtualPet(name, description));
+				shelter.addPet(new OrgoDog(name, description));
 			}
 			if (userInput.equals("5")) {
 				System.out.println("It looks like the new parents just walked in the door!");
