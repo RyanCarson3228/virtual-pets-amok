@@ -9,6 +9,7 @@ import org.junit.Test;
 
 public class RoboDogTest {
 
+	//testing constructors
 	@Test
 	public void shouldInstantiateRoboDogWithNameAndDescription() {
 		Pet underTest = new RoboDog("", "");
@@ -24,6 +25,7 @@ public class RoboDogTest {
 		assertThat(underTest.getBoredom(), is(expected.getBoredom()));
 	}
 
+	//this test was to check the superclasses were working
 	@Test
 	public void shouldReturnNameAsBob() {
 		Pet underTest = new RoboDog("Bob", "");
@@ -34,7 +36,7 @@ public class RoboDogTest {
 	
 	@Test
 	public void shouldReturnRustAs25() {
-		RoboDog underTest = new RoboDog("","");
+		Robotic underTest = new RoboDog("","");
 		int check = underTest.getRust();
 		
 		assertEquals(25, check);
@@ -42,7 +44,7 @@ public class RoboDogTest {
 
 	@Test
 	public void assertThatTickIncreasesRust() {
-		RoboDog underTest = new RoboDog("","");
+		Robotic underTest = new RoboDog("","");
 		underTest.tick();
 		
 		int check = underTest.getRust();
@@ -51,12 +53,11 @@ public class RoboDogTest {
 	
 	@Test
 	public void assertThatOilReducesRust() {
-		RoboDog underTest = new RoboDog("","");
+		Robotic underTest = new RoboDog("","");
 		underTest.oil();
 		
 		int check = underTest.getRust();
 		assertEquals(5, check);
 	}
-	
 
 }

@@ -1,8 +1,6 @@
 package virtualpetshelter;
 
-public class RoboDog extends Pet {
-
-	private int rust;
+public class RoboDog extends Robotic implements Walkable{
 
 	public RoboDog(String name, String description) {
 		this(name, description, 25, 25, 25);
@@ -15,20 +13,12 @@ public class RoboDog extends Pet {
 		this.happiness = happiness;
 		this.rust = rust;
 	}
-
-	public int getRust() {
-		return rust;
-	}
 	
 	@Override
-	public void tick() {
-		boredom +=4;
-		rust+= 1;
-		
-	}
-
-	public void oil() {
-		rust-=20;
+	public void walk() {
+		boredom-=10;
+		happiness+=5;
+		rust+=15; 
 	}
 
 }

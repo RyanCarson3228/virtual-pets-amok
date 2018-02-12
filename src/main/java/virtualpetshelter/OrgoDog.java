@@ -1,6 +1,6 @@
 package virtualpetshelter;
 
-public class OrgoDog extends Organic {
+public class OrgoDog extends Organic implements Walkable {
 
 	public OrgoDog(String name, String description) {
 		this(name, description, 25, 25, 25, 25, 25);
@@ -18,6 +18,10 @@ public class OrgoDog extends Organic {
 
 	// start virtual-pet-amok methods
 
+	/* (non-Javadoc)
+	 * @see virtualpetshelter.Walkable#walk()
+	 */
+	@Override
 	public void walk() {
 		boredom -= 10;
 		waste -= 10;
