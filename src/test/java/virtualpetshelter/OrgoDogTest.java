@@ -11,7 +11,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldInstantiatePetWithNameAndDescription() {
-		Pet underTest = new OrgoDog("", "");
+		VirtualPet underTest = new OrgoDog("", "");
 
 		assertNotNull(underTest);
 	}
@@ -19,14 +19,14 @@ public class OrgoDogTest {
 	@Test
 	public void shouldInstantiatePetWithNameDescriptionAndAttibutes() {
 		Organic underTest = new OrgoDog("", "");
-		Organic expected = new OrgoDog("", "", 25, 25, 25, 25, 25);
+		Organic expected = new OrgoDog("", "", 25, 25, 25, 25, 25, 50, 100);
 
 		assertThat(underTest.getThirst(), is(expected.getThirst()));
 	}
 
 	@Test
 	public void shouldReturnNameAsHarry() {
-		Pet underTest = new OrgoDog("Harry", "");
+		VirtualPet underTest = new OrgoDog("Harry", "");
 		String check = underTest.getName();
 
 		assertEquals("Harry", check);
@@ -50,7 +50,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnBoredomAsTwentyFive() {
-		Pet underTest = new OrgoDog("", "");
+		VirtualPet underTest = new OrgoDog("", "");
 		int check = underTest.getBoredom();
 
 		assertEquals(25, check);
@@ -58,7 +58,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnDescriptionAsDescription() {
-		Pet underTest = new OrgoDog("", "Description");
+		VirtualPet underTest = new OrgoDog("", "Description");
 		String check = underTest.getDescription();
 
 		assertEquals("Description", check);
@@ -85,7 +85,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void tickShouldIncreaseBoredom() {
-		Organic underTest = new OrgoDog("", "");
+		VirtualPet underTest = new OrgoDog("", "");
 		underTest.tick();
 		int check = underTest.getBoredom();
 
@@ -102,7 +102,7 @@ public class OrgoDogTest {
 	}
 
 	@Test
-	public void feedShouldReduceHUnger() {
+	public void feedShouldReduceHunger() {
 		Organic underTest = new OrgoDog("", "");
 		underTest.feed();
 		int check = underTest.getHunger();
@@ -112,7 +112,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void playShouldReduceBoredom() {
-		Pet underTest = new OrgoDog("", "");
+		VirtualPet underTest = new OrgoDog("", "");
 		underTest.play();
 		int check = underTest.getBoredom();
 
@@ -157,7 +157,7 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldReturnHappinessAsTwentyFive() {
-		Organic underTest = new OrgoDog("", "");
+		VirtualPet underTest = new OrgoDog("", "");
 		int check = underTest.getHappy();
 
 		assertEquals(25, check);
@@ -174,10 +174,46 @@ public class OrgoDogTest {
 
 	@Test
 	public void shouldSoilAtHighWaste() {
-		Organic underTest = new OrgoDog("", "", 25, 25, 25, 50, 25);
+		Organic underTest = new OrgoDog("", "", 25, 25, 25, 50, 25, 50, 100);
 		underTest.tick();
 		int check = underTest.getWaste();
 
 		assertEquals(0, check);
 	}
+
+	@Test
+	public void shouldHaveCageStateAs100() {
+		OrgoDog underTest = new OrgoDog("", "");
+		int check = underTest.getCageState();
+
+		assertEquals(100, check);
+	}
+
+	@Test
+	public void assertThatCleanReturnsCageStateTo100() {
+		OrgoDog underTest = new OrgoDog("", "", 25, 25, 25, 25, 25, 50, 50);
+		underTest.cleanCage();
+		int check = underTest.getCageState();
+
+		assertEquals(100, check);
+	}
+
+	@Test
+	public void shouldReturnHealthAs50() {
+		OrgoDog underTest = new OrgoDog("", "");
+		int check = underTest.getHealth();
+
+		assertEquals(50, check);
+	}
+
+	@Test
+	public void assertThatLowHealthReducesHappiness() {
+		OrgoDog underTest = new OrgoDog("", "", 25, 25, 25, 25, 25, 50, 100);
+		underTest.tick();
+
+		int check = underTest.getHappy();
+		assertEquals(20, check);
+
+	}
+
 }

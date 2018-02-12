@@ -1,6 +1,6 @@
 package virtualpetshelter;
 
-public abstract class Organic extends Pet {
+public abstract class Organic extends VirtualPet {
 
 	protected int hunger;
 	protected int thirst;
@@ -26,6 +26,16 @@ public abstract class Organic extends Pet {
 		if (waste == 50) {
 			soil();
 		}
+		if (health <= 25) {
+			happiness -= 15;
+		} else if (health > 25 && health <= 50) {
+			happiness -= 5;
+		} else if (health > 50 && health <= 75) {
+			happiness += 5;
+		} else {
+			happiness += 10;
+		}
+
 	}
 
 	public void drink() {

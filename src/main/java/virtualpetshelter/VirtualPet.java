@@ -1,13 +1,14 @@
 package virtualpetshelter;
 
-public abstract class Pet {
+public abstract class VirtualPet {
 
 	protected String name;
 	protected String description;
 	protected int boredom;
 	protected int happiness;
+	protected int health;
 
-	public Pet() {
+	public VirtualPet() {
 		super();
 	}
 
@@ -34,6 +35,10 @@ public abstract class Pet {
 
 	public void tick() {
 		boredom += 4;
+	}
+
+	public int getHealth() {
+		return health;
 	}
 
 }

@@ -1,6 +1,6 @@
 package virtualpetshelter;
 
-public abstract class Robotic extends Pet{
+public abstract class Robotic extends VirtualPet {
 
 	protected int rust;
 
@@ -14,13 +14,17 @@ public abstract class Robotic extends Pet{
 
 	@Override
 	public void tick() {
-		boredom +=4;
-		rust+= 1;
-		
+		boredom += 4;
+		rust += 1;
+		happiness -= 1;
+		if (rust <= 50) {
+			health -= 3;
+		}
+
 	}
 
 	public void oil() {
-		rust-=20;
+		rust -= 20;
 	}
 
 }

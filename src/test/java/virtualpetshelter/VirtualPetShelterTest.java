@@ -21,7 +21,7 @@ public class VirtualPetShelterTest {
 	public void nameShouldGetPet() {
 		OrgoDog expected = new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION);
 		underTest.addPet(expected);
-		Pet check = underTest.getPet(TEST_PET_ONE_NAME);
+		VirtualPet check = underTest.getPet(TEST_PET_ONE_NAME);
 		assertEquals(expected, check);
 	}
 
@@ -53,64 +53,54 @@ public class VirtualPetShelterTest {
 
 	@Test
 	public void shouldPullThirstFromRightAnimal() {
-		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 25, 0, 0, 10, 25));
-		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 20, 0, 0, 10, 25));
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 25, 0, 0, 10, 25, 50, 100));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 20, 0, 0, 10, 25, 50, 100));
 		int check = underTest.getPetThirst(TEST_PET_ONE_NAME);
 		assertEquals(25, check);
 	}
 
 	@Test
 	public void shouldPullHungerFromRightAnimal() {
-		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 25, 0, 10, 25));
-		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 20, 0, 10, 25));
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 25, 0, 10, 25, 50, 100));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 20, 0, 10, 25, 50, 100));
 		int check = underTest.getPetHunger(TEST_PET_TWO_NAME);
 		assertEquals(20, check);
 	}
 
 	@Test
 	public void shouldPullBoredomFromRightAnimal() {
-		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 0, 25, 10, 25));
-		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 0, 20, 10, 25));
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 0, 25, 10, 25, 50, 100));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 0, 20, 10, 25, 50, 100));
 		int check = underTest.getPetBoredom(TEST_PET_TWO_NAME);
 		assertEquals(20, check);
 	}
 
+	// Update Test to be only to Organic Pets
 	@Test
-	public void shouldHaveOnePetDrink() {
-		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
-		underTest.petDrink(TEST_PET_ONE_NAME);
-		int check = underTest.getPetThirst(TEST_PET_ONE_NAME);
-		assertEquals(15, check);
-	}
-
-	@Test
-	public void shouldHaveAllPetsDrink() {
+	public void shouldHaveAllOrganicPetsDrink() {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.drinkAll();
 
-		for (Pet virtualPet : underTest.pets()) {
-			int check = underTest.getPetThirst(virtualPet.getName());
-			assertEquals(15, check);
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof Organic) {
+				int check = ((Organic) virtualPet).getThirst();
+				assertEquals(15, check);
+			}
 		}
 	}
 
+	// Update Test to only apply to Organic Pets
 	@Test
-	public void shouldFeedOnePet() {
-		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
-		underTest.feedPet(TEST_PET_ONE_NAME);
-		int check = underTest.getPetHunger(TEST_PET_ONE_NAME);
-		assertEquals(19, check);
-	}
-
-	@Test
-	public void shouldFeedAllPets() {
+	public void shouldFeedAllOrganicPets() {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.feedAll();
-		for (Pet virtualPet : underTest.pets()) {
-			int check = underTest.getPetHunger(virtualPet.getName());
-			assertEquals(19, check);
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof Organic) {
+				int check = ((Organic) virtualPet).getHunger();
+				assertEquals(19, check);
+			}
 		}
 	}
 
@@ -151,7 +141,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Pet virtualPet : underTest.pets()) {
+		for (VirtualPet virtualPet : underTest.allPets()) {
 			int check = underTest.getPetHunger(virtualPet.getName());
 			assertEquals(28, check);
 		}
@@ -162,7 +152,7 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Pet virtualPet : underTest.pets()) {
+		for (VirtualPet virtualPet : underTest.allPets()) {
 			int check = underTest.getPetThirst(virtualPet.getName());
 			assertEquals(30, check);
 		}
@@ -173,9 +163,80 @@ public class VirtualPetShelterTest {
 		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
 		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
 		underTest.allTick();
-		for (Pet virtualPet : underTest.pets()) {
+		for (VirtualPet virtualPet : underTest.allPets()) {
 			int check = underTest.getPetBoredom(virtualPet.getName());
 			assertEquals(29, check);
 		}
 	}
+
+	@Test
+	public void shouldOilAllRoboticPetsCheckRobots() {
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
+		underTest.addPet(new RoboDog("Sam", "Description"));
+		underTest.oilRobots();
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof Robotic) {
+				int check = ((Robotic) virtualPet).getRust();
+				assertEquals(5, check);
+			}
+		}
+	}
+
+	@Test
+	public void shouldCleanAllDogCages() {
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
+		underTest.addPet(new RoboDog("Sam", "Description"));
+		underTest.cleanAllCages();
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof OrgoDog) {
+				int check = ((OrgoDog) virtualPet).getCageState();
+				assertEquals(100, check);
+			}
+		}
+	}
+
+	@Test
+	public void shouldReturnSumContribtionsToLitterboxAsThirty() {
+		underTest.addPet(new OrgoCat(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 0, 0, 0, 0, 50, 10));
+		underTest.addPet(new OrgoCat(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 0, 0, 0, 0, 50, 20));
+		int check = underTest.boxStatus();
+
+		assertEquals(30, check);
+	}
+
+	@Test
+	public void shouldChangeAllContributionsToZero() {
+		underTest.addPet(new OrgoCat(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION, 0, 0, 0, 0, 0, 50, 10));
+		underTest.addPet(new OrgoCat(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION, 0, 0, 0, 0, 0, 50, 20));
+		underTest.cleanBox();
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof OrgoCat) {
+				int check = ((OrgoCat) virtualPet).getContribution();
+				assertEquals(0, check);
+			}
+		}
+	}
+
+	@Test
+	public void shouldWalkAllDogs() {
+		underTest.addPet(new OrgoDog(TEST_PET_ONE_NAME, TEST_PET_ONE_DESCRIPTION));
+		underTest.addPet(new OrgoDog(TEST_PET_TWO_NAME, TEST_PET_TWO_DESCRIPTION));
+		underTest.addPet(new RoboDog("Sam", "Description"));
+		underTest.walkAll();
+		for (VirtualPet virtualPet : underTest.allPets()) {
+			if (virtualPet instanceof Walkable) {
+				int check = ((VirtualPet) virtualPet).getBoredom();
+				assertEquals(15, check);
+			}
+		}
+
+	}
+
+	@Test
+	public void testPrintShelterStatus() throws Exception {
+		throw new RuntimeException("not yet implemented");
+	}
+
 }
